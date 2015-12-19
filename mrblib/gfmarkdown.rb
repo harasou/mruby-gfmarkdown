@@ -1,8 +1,7 @@
 class GFMarkdown
-  URL = "https://api.github.com/"
 
   def initialize(opt = {})
-    @url = ( opt[:url] ? opt[:url] : URL ) << "markdown"
+    @url = opt[:url] ? opt[:url] : "https://api.github.com/markdown"
     @token = opt[:token]
     @context = opt[:context]
     @mode = @context ? "gfm" : "markdown"
