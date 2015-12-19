@@ -3,8 +3,8 @@ class GFMarkdown
   def initialize(opt = {})
     @url = opt[:url] ? opt[:url] : "https://api.github.com/markdown"
     @token = opt[:token]
+    @mode = opt[:mode]
     @context = opt[:context]
-    @mode = @context ? "gfm" : "markdown"
   end
 
   def render data
@@ -18,6 +18,7 @@ class GFMarkdown
       :text => data,
       :mode => @mode,
     }
+    postdata[:mode] = @mode if @mode
     postdata[:context] = @context if @context
 
     HttpRequest.new().post(@url,JSON.generate(postdata),headers).body
