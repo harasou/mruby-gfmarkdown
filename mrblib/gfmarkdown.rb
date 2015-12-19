@@ -7,16 +7,14 @@ class GFMarkdown
     @context = opt[:context]
   end
 
-  def render data
-
+  def render text
     headers = {
       'User-Agent' => "mruby-gfmarkdown",
     }
-    headers["Authorization"] = ( "token " << @token ) if @token
+    headers['Authorization'] = "token #{@token}" if @token
 
     postdata = {
-      :text => data,
-      :mode => @mode,
+      :text => text,
     }
     postdata[:mode] = @mode if @mode
     postdata[:context] = @context if @context
